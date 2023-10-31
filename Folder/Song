@@ -1,0 +1,141 @@
+import java.util.Scanner;
+ 
+public class Song {
+ 
+    private String title;
+    private String artist;
+    private int duration;
+    private boolean isLike;
+ 
+    // Constructor
+    public Song(String title, String artist, int duration) {
+        this.title = title;
+        this.artist = artist;
+        this.duration = duration; // in secound
+        this.isLike = false;
+    }
+ 
+    // Getter Setter
+    public String getTitle() {
+        return title;
+    }
+ 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+ 
+    public String getArtist() {
+        return artist;
+    }
+ 
+    public void setArtist(String artist) {
+        this.artist = artist;
+    }
+ 
+    public int getDuration() {
+        return duration;
+    }
+ 
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+ 
+    // Add song you Favorite
+    public String addToFavorite() {
+        if (this.isLike) {
+            this.isLike = false;
+            return getTitle() + " is disliked!";
+        }
+        this.isLike = true;
+        return getTitle() + " is liked!";
+    }
+ 
+    // Format Second To Minute
+    public String getFormattedDuration() {
+        int minutes = duration / 60;
+        int seconds = duration % 60;
+        return minutes + " minutes " + seconds + " seconds";
+    }
+ 
+    // Check is The same artist
+    public boolean isSameArtist(Song otherSong) {
+        if (this.artist.equals(otherSong.getArtist())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+ 
+    // Check is isFavorite
+    public String isFavorite() {
+        if (this.isLike) {
+            return getTitle() + " is liked";
+        }
+        return getTitle() + " is disliked";
+    }
+ 
+    public static void main(String[] args) {
+        // Create multiple Song objects
+        Song song1 = new Song("Shape of You", "Ed Sheeran", 234);
+        Song song2 = new Song("Blinding Lights", "The Weeknd", 201);
+        Song song3 = new Song("Someone Like You", "Adele", 278);
+        Song song4 = new Song("Castle on the Hill", "Ed Sheeran", 273);
+ 
+        // Test the getters for each song
+        System.out.println("Song 1 - Title: " + song1.getTitle() + ", Artist: " + song1.getArtist() + ", Duration: "
+                + song1.getFormattedDuration());
+        System.out.println("");
+        System.out.println("Song 2 - Title: " + song2.getTitle() + ", Artist: " + song2.getArtist() + ", Duration: "
+                + song2.getFormattedDuration());
+        System.out.println("");
+        System.out.println("Song 3 - Title: " + song3.getTitle() + ", Artist: " + song3.getArtist() + ", Duration: "
+                + song3.getFormattedDuration());
+        System.out.println("");
+        System.out.println("Song 4 - Title: " + song4.getTitle() + ", Artist: " + song4.getArtist() + ", Duration: "
+                + song4.getFormattedDuration());
+ 
+        // Test setting new values using setters
+        song1.setTitle("Thinking Out Loud");
+        song1.setArtist("Ed Sheeran");
+        song1.setDuration(270);
+ 
+        song2.setTitle("Dance Monkey");
+        song2.setArtist("Tones and I");
+        song2.setDuration(209);
+ 
+        song3.setTitle("Hello");
+        song3.setArtist("Adele");
+        song3.setDuration(293);
+ 
+        song4.setTitle("Photograph");
+        song4.setArtist("Ed Sheeran");
+        song4.setDuration(257);
+ 
+        // Test the getters again
+        System.out.println("Song 1 - Title: " + song1.getTitle() + ", Artist: " + song1.getArtist() + ", Duration: "
+                + song1.getFormattedDuration());
+        System.out.println("Song 2 - Title: " + song2.getTitle() + ", Artist: " + song2.getArtist() + ", Duration: "
+                + song2.getFormattedDuration());
+        System.out.println("Song 3 - Title: " + song3.getTitle() + ", Artist: " + song3.getArtist() + ", Duration: "
+                + song3.getFormattedDuration());
+        System.out.println("Song 4 - Title: " + song4.getTitle() + ", Artist: " + song4.getArtist() + ", Duration: "
+                + song4.getFormattedDuration());
+ 
+        // Test adding songs to favorites
+        System.out.println(song1.addToFavorite());
+        System.out.println(song2.addToFavorite());
+        System.out.println(song3.addToFavorite());
+        System.out.println(song4.addToFavorite());
+ 
+        // Test isFavorite() method
+        System.out.println(song1.isFavorite());
+        System.out.println(song2.isFavorite());
+        System.out.println(song3.isFavorite());
+        System.out.println(song4.isFavorite());
+ 
+        // Test isSameArtist() method
+        System.out.println("Song 1 and Song 2 have the same artist: " + song1.isSameArtist(song2));
+        System.out.println("Song 1 and Song 3 have the same artist: " + song1.isSameArtist(song3));
+        System.out.println("Song 1 and Song 4 have the same artist: " + song1.isSameArtist(song4));
+    }
+}
